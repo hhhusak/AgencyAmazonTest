@@ -1,0 +1,41 @@
+.conversionTable {
+    width: 100%;
+    border-collapse: collapse;
+    font-family: Arial, sans-serif;
+}
+
+.tableHeader {
+    background-color: #000000;
+    font-weight: 700;
+    color: #ffffff;
+}
+
+.tableHeader .tableRow {
+    display: flex;
+}
+
+.tableBody .tableRow {
+    background-color: rgb(255, 255, 255);
+}
+
+.tableBody .tableRow:nth-child(even) {
+    background-color: #e8e8e8;
+}
+
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+
+.tableRow {
+    display: flex;
+    border-bottom: 1px solid #ddd;
+}
+
+.tableCell {
+    flex: 1;
+    padding: 12px;
+    text-align: left;
+}

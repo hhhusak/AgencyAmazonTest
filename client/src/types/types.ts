@@ -1,3 +1,10 @@
-export interface DashboardProps {
-    data: Array<{ clicks: number; pricePerClick: number; date: Date; sourceType: string;  }>;
+export interface PerformanceData {
+    date: string;
+    clicks: number;
+    pricePerClick: number;
+    sourceType: string;
+}
+
+export interface PerformanceDataList {
+    data: PerformanceData[];
 }

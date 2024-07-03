@@ -4,11 +4,12 @@ import Header from './ui/header/Header';
 import Dashboard from './dashboard/Dashboard';
 import Home from './home/Home';
 import About from './about/About';
+import styles from './app.module.css'
 
 const App: React.FC = () => {
   return (
     <Router>
-      <div className="App">
+      <div className={styles.app}>
         <Header />
         <Routes>
           <Route path="/" element={<Home />} />
