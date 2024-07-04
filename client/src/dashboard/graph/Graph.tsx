@@ -1,25 +1,31 @@
 import { LineChart } from "@mui/x-charts";
 import styles from './graph.module.css'
+import { useSelector } from "react-redux";
+import { RootState } from "../../store";
+import { useState } from "react";
 
 const Graph: React.FC = () => {
+    const [toggle, setToggle] = useState<'clicks' | 'pricePerClick'>('clicks');
+    const performanceData = useSelector((state: RootState) => state.performance.items);
 
-    const data = [
-        { date: 'Oct 1', clicks: 11, pricePerClick: '$50.00', sourceType: 'mobile' },
-        { date: 'Oct 7', clicks: 11, pricePerClick: '$50.00', sourceType: 'mobile' },
-        { date: 'Oct 14', clicks: 11, pricePerClick: '$50.00', sourceType: 'mobile' },
-        { date: 'Oct 21', clicks: 11, pricePerClick: '$50.00', sourceType: 'mobile' },
-        { date: 'Oct 28', clicks: 11, pricePerClick: '$50.00', sourceType: 'mobile' },
-        { date: 'Nov 4', clicks: 11, pricePerClick: '$50.00', sourceType: 'mobile' },
-    ];
+    const dateList = performanceData.map(item => item.date);
+    const clicksList = performanceData.map(item => item.clicks);
+    const pricePerClick = performanceData.map(item => item.pricePerClick);
+    const seriesList = toggle === 'clicks' ? clicksList : pricePerClick;
 
-    const dateList = data.map(item => item.date);
-    console.log("Date list: " + dateList);
-
+    const handleToggle = () => {
+        setToggle(prevToggle => prevToggle === 'clicks' ? 'pricePerClick' : 'clicks');
+    };
 
     return (
         <div className={styles.wrapper}>
-            <div className={styles.text}>
-                Clicks
+            <div className={styles.header}>
+                <div className={styles.text}>
+                    Analyze by
+                </div>
+                <button onClick={handleToggle} className={styles.toggleButton}>
+                    {toggle === 'clicks' ? 'Clicks' : 'Price Per Click'}
+                </button>
             </div>
             <LineChart
                 xAxis={[
@@ -27,12 +33,7 @@ const Graph: React.FC = () => {
                 ]}
                 series={[
                     {
-                        data: [2, 5, 2, 8, 1, 5],
-                        label: 'mobile'
-                    },
-                    {
-                        data: [6, 3, 6, 3, 10, 6],
-                        label: 'desktop'
+                        data: seriesList,
                     },
                 ]}
                 width={700}

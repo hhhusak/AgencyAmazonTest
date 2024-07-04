@@ -1,4 +1,3 @@
-// conversionSlice.ts
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { PerformanceData } from '../types/types';
 
@@ -14,12 +13,12 @@ const conversionSlice = createSlice({
   name: 'conversion',
   initialState,
   reducers: {
-    addPerformances: (state, action: PayloadAction<PerformanceData[]>) => {
-      state.items.push(...action.payload);
+    setPerformanceData(state, action: PayloadAction<PerformanceData[]>) {
+      state.items = action.payload;
     },
   },
 });
 
-export const { addPerformances } = conversionSlice.actions;
+export const { setPerformanceData } = conversionSlice.actions;
 
 export default conversionSlice.reducer;
