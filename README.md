@@ -1,6 +1,6 @@
 # General
 
-I've started with front-end development testing UI with some mock data. At the very start I initialized both client and server applications.
+I've started with initializing both client and server application. Firstly I developed the front-end application to test UI with some mock data.
 
 # Front-end
 
